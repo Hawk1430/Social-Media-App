@@ -11,13 +11,12 @@ const GradientButton = () => {
         borderRadius: '12px',
         width: '50px',
         height: '50px',
-        boxShadow: '0 8px 20px rgba(241, 90, 36, 0.35)',
         '&:hover': {
           background: 'linear-gradient(to top right, #f77b2e, #e94e17)',
         },
       }}
     >
-      <ChevronRightIcon />
+      <ChevronRightIcon  sx={{ fontSize: 50 }}/>
     </IconButton>
   );
 };

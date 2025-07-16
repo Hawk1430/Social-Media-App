@@ -1,9 +1,47 @@
-.main{
-    margin-left: 20px;
+.main {
     margin-right: 20px;
-    background-color: #f4f4f4;
-}
-.main__heading{
-    font-weight: 700;
-    font-size: 20px;
-}
+    margin-left: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Fixed header section */
+  .main__header {
+    padding-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  /* Scrollable card container */
+  .main__content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    justify-content: space-between;
+  }
+  
+  /* Extra space for small devices */
+  @media (max-width: 600px) {
+    .main__content {
+      padding-bottom: 120px;
+    }
+  }
+  
+  @media (min-width: 601px) and (max-width: 960px) {
+    .main__content {
+      padding-bottom: 160px;
+    }
+  }
+  
+  @media (min-width: 961px) {
+    .main__content {
+      padding-bottom: 180px;
+    }
+  }
+  
+  

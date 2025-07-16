@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ()=> {
-    const response = await fetch('');
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const data = await  response.json();
     return data;
 });
@@ -10,7 +10,7 @@ const postsSlice = createSlice({
     name: "posts",
     initialState: { 
         data: [],
-        loading: false,
+        loading: true,
         error: null,
     },
     reducers: {},

@@ -44,6 +44,7 @@ const Header = () => {
 			<AppBar
 				position="static"
 				sx={{
+					height: "7.5vh",
 					backgroundColor: "#f15a24",
 					boxShadow: "0 0 20px rgba(235, 85, 30, 0.75)",
 					marginBottom: "30px",
