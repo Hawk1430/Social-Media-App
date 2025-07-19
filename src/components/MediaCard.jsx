@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
 import "./MediaCard.css";
 import GradientButton from "./GradientButton";
+import { useNavigate } from "react-router-dom";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const MAX_LINES = 3;
 
 const MediaCard = ({ id, title, description }) => {
+	const navigate = useNavigate();
 	const [readMore, setReadMore] = useState(false);
 	const descriptionRef = useRef(null);
 
@@ -29,7 +32,7 @@ const MediaCard = ({ id, title, description }) => {
 			<div className="card-content">
 				<p className="card-description" ref={descriptionRef}>
 					{getDisplayText()}
-					{!readMore && description.split(" ").length > 15 && (
+					{!readMore && description.split(" ").length > 14 && (
 						<span
 							className="read-more"
 							onClick={() => setReadMore(true)}
@@ -38,7 +41,25 @@ const MediaCard = ({ id, title, description }) => {
 						</span>
 					)}
 				</p>
-				<GradientButton />
+				<GradientButton
+					onClick={() => navigate(`item/${id}`)}
+					sx={{
+						minWidth: "50px",
+						height: "50px",
+						borderRadius: "12px",
+						background: "linear-gradient(to top right, #f88f40, #f15a24)",
+						boxShadow: "0 8px 16px rgba(241, 90, 36, 0.3)",
+						color: "#fff",
+						padding: 0,
+						"&:hover": {
+						background: "linear-gradient(to top right, #f77b2e, #e94e17)",
+						boxShadow: "0 8px 20px rgba(241, 90, 36, 0.4)",
+						},
+					}}
+					>
+						<ChevronRightIcon sx={{ fontSize: 28 }} />
+				</GradientButton>
+
 			</div>
 		</div>
 	);

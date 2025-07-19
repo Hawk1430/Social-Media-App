@@ -1,23 +1,34 @@
-import React from 'react';
-import { IconButton } from '@mui/material';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import React from "react";
+import { Button } from "@mui/material";
 
-const GradientButton = () => {
+const GradientButton = ({ onClick, children, active = true, sx = {} }) => {
+  const gradient = "linear-gradient(to top right, #f88f40, #f15a24)";
+
+  const activeStyles = {
+    background: gradient,
+    color: "#fff",
+  };
+
+  const inactiveStyles = {
+    background: "#fff",
+    color: "#000",
+  };
+
   return (
-    <IconButton
+    <Button
+      onClick={onClick}
       sx={{
-        background: 'linear-gradient(to top right, #f88f40, #f15a24)',
-        color: '#fff',
-        borderRadius: '12px',
-        width: '50px',
-        height: '50px',
-        '&:hover': {
-          background: 'linear-gradient(to top right, #f77b2e, #e94e17)',
-        },
+        textTransform: "none",
+        fontWeight: 600,
+        padding: "10px 15px",
+		border: "none",
+        borderRadius: "12px",
+        ...(!active ? inactiveStyles : activeStyles),
+        ...sx,
       }}
     >
-      <ChevronRightIcon  sx={{ fontSize: 50 }}/>
-    </IconButton>
+      {children}
+    </Button>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	AppBar,
 	Box,
@@ -20,10 +20,15 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import { useTheme } from "@mui/material/styles";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const icons = [
 	{ label: "Home", icon: <HomeIcon />, key: "home" },
-	{ label: "Notifications", icon: <NotificationsIcon />, key: "notifications" },
+	{
+		label: "Notifications",
+		icon: <NotificationsIcon />,
+		key: "notifications",
+	},
 	{ label: "Bookmarks", icon: <BookmarkIcon />, key: "bookmarks" },
 	{ label: "Profile", icon: <PersonIcon />, key: "profile" },
 ];
@@ -32,12 +37,35 @@ const Header = () => {
 	const [active, setActive] = useState("home");
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
+	const navigate = useNavigate()
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md")); // md = 960px
+	const location = useLocation();
 
 	const toggleDrawer = (open) => () => {
 		setDrawerOpen(open);
 	};
+
+	const getActiveKey = () => {
+		const path = location.pathname;
+
+		if (path === "/" || path.startsWith("/home")) return "home";
+		if (path.startsWith("/notifications")) return "notifications";
+		if (path.startsWith("/profile")) return "profile";
+		if (path.startsWith("/item")) return "bookmarks";
+		return "home";
+	};
+
+	useEffect(() => {
+		setActive(getActiveKey());
+	}, [location]);
+
+	const handleIconClick = (e) => {
+		if(e.target.key === 'home' && location.pathname !== '/') {
+			navigate('/')
+			setActive(e.target.key);
+		}
+	}
 
 	return (
 		<>
@@ -57,7 +85,10 @@ const Header = () => {
 
 					{/* Mobile: Hamburger Menu */}
 					{isMobile ? (
-						<IconButton onClick={toggleDrawer(true)} sx={{ color: "#fff" }}>
+						<IconButton
+							onClick={toggleDrawer(true)}
+							sx={{ color: "#fff" }}
+						>
 							<MenuIcon />
 						</IconButton>
 					) : (
@@ -74,9 +105,12 @@ const Header = () => {
 							{icons.map(({ icon, key }) => (
 								<IconButton
 									key={key}
-									onClick={() => setActive(key)}
+									onClick={handleIconClick}
 									sx={{
-										color: active === key ? "#f15a24" : "#fcdcd1",
+										color:
+											active === key
+												? "#f15a24"
+												: "#fcdcd1",
 									}}
 								>
 									{icon}
@@ -88,8 +122,16 @@ const Header = () => {
 			</AppBar>
 
 			{/* Drawer for Mobile */}
-			<Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-				<Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+			<Drawer
+				anchor="left"
+				open={drawerOpen}
+				onClose={toggleDrawer(false)}
+			>
+				<Box
+					sx={{ width: 250 }}
+					role="presentation"
+					onClick={toggleDrawer(false)}
+				>
 					<List>
 						{icons.map(({ label, icon, key }) => (
 							<ListItem key={key} disablePadding>
@@ -97,7 +139,9 @@ const Header = () => {
 									onClick={() => setActive(key)}
 									selected={active === key}
 								>
-									<ListItemIcon sx={{ color: "#f15a24" }}>{icon}</ListItemIcon>
+									<ListItemIcon sx={{ color: "#f15a24" }}>
+										{icon}
+									</ListItemIcon>
 									<ListItemText primary={label} />
 								</ListItemButton>
 							</ListItem>

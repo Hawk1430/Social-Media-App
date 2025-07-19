@@ -1,0 +1,117 @@
+.post_details_page {
+	height: 100vh;
+	overflow-y: auto;
+	padding: 30px;
+}
+
+.item_container {
+	overflow-y: auto;
+}
+
+.header_container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 24px;
+}
+
+.back_button {
+	background: #fff;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	padding: 6px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.post_number h1 {
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.post_container {
+	display: flex;
+	gap: 60px;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.post_card {
+	width: 485px;
+	height: 385px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 20px;
+	position: relative;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+	justify-content: space-between;
+	padding: 16px;
+	color: white;
+}
+
+.post_card h3 {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 600;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card_icons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 10px;
+	color: white;
+	cursor: pointer;
+}
+
+.post_info {
+	flex: 1;
+	max-width: 650px;
+}
+
+.post_info_buttons {
+	display: flex;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.post_info span {
+	font-size: 15px;
+	color: #444;
+	line-height: 1.8;
+	white-space: pre-line;
+}
+
+.post_detail {
+	border-radius: 16px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+	font-size: 15px;
+	color: #333;
+	line-height: 1.8;
+	max-height: 260px;
+	overflow-y: auto;
+	white-space: pre-wrap;
+	margin-top: 12px;
+	transition: all 0.3s ease;
+}
+
+.other_posts_container {
+	padding-bottom: 200px;
+	margin-top: 70px;
+}
+
+.otherPosts {
+	margin-top: 30px;
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 80px;
+	justify-content: space-between;
+}
