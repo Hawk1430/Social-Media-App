@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -16,6 +16,7 @@ const Items = () => {
 	const [loading, setLoading] = useState(true);
 	const [activeTab, setActiveTab] = useState("details");
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const scrollRef = useRef(null);
 
 	useEffect(() => {
 		const found = data.find((p) => p.id == id);
@@ -25,12 +26,19 @@ const Items = () => {
 		setLoading(false);
 	}, [data, id]);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [id]);
+  
+
 	if (loading) {
 		return <div>Loading...</div>;
 	}
 
 	return (
-    <div className="post_details_page">
+    <div className="post_details_page" ref={scrollRef}>
       <div className="item_container">
         <div className="header_container">
           <div className="back_button" onClick={() => navigate('/')}>

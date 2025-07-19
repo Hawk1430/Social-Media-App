@@ -20,6 +20,7 @@ const MediaCard = ({ id, title, description }) => {
 
 		return words.slice(0, 14)+",";
 	};
+	  
 
 	return (
 		<div className="card">
@@ -42,7 +43,7 @@ const MediaCard = ({ id, title, description }) => {
 					)}
 				</p>
 				<GradientButton
-					onClick={() => navigate(`item/${id}`)}
+					onClick={() => navigate(`/item/${id}`)}
 					sx={{
 						minWidth: "50px",
 						height: "50px",
