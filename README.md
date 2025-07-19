@@ -1,6 +1,8 @@
 # Social Media App
 
-A React-based social media platform for travelers, featuring post browsing, search, and details, with a modern UI using Material-UI and Redux Toolkit for state management.
+## 🚀 Live Preview
+
+[View the app live on Netlify](https://grand-gnome-300330.netlify.app/)
 
 ---
 
